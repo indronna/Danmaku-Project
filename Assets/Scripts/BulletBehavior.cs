@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BulletBehavior : MonoBehaviour
 {
@@ -26,5 +27,22 @@ public class BulletBehavior : MonoBehaviour
         Debug.Log("TargetForward : " + targetForward + " TargetUp : " + targetUp);
         mouvement = targetForward;
         ready = true;
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        //Check for a match with the specified name on any GameObject that collides with your GameObject
+        if (collider.gameObject.name == "FPC")
+        {
+            //If the GameObject's name matches the one you suggest, output this message in the console
+            //SceneManager.LoadScene("Arena");
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "LimitBox")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
